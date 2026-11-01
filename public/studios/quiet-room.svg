@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Warm podcast studio with acoustic wall panels, a microphone and a pendant lamp">
+  <defs>
+    <linearGradient id="pod-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#241627"/>
+      <stop offset="1" stop-color="#43243f"/>
+    </linearGradient>
+    <linearGradient id="pod-floor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#321b31"/>
+      <stop offset="1" stop-color="#241326"/>
+    </linearGradient>
+    <radialGradient id="pod-lamp" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#fde68a" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#fde68a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="pod-mic" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#d6d3d1"/>
+      <stop offset="0.5" stop-color="#f5f5f4"/>
+      <stop offset="1" stop-color="#a8a29e"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="600" fill="url(#pod-bg)"/>
+
+  <g fill="#4a2b47" stroke="#5d3a59" stroke-width="2">
+    <rect x="60" y="70" width="94" height="94" rx="18"/>
+    <rect x="170" y="70" width="94" height="94" rx="18"/>
+    <rect x="280" y="70" width="94" height="94" rx="18"/>
+    <rect x="390" y="70" width="94" height="94" rx="18"/>
+    <rect x="60" y="180" width="94" height="94" rx="18"/>
+    <rect x="170" y="180" width="94" height="94" rx="18"/>
+    <rect x="280" y="180" width="94" height="94" rx="18"/>
+    <rect x="390" y="180" width="94" height="94" rx="18"/>
+    <rect x="60" y="290" width="94" height="94" rx="18"/>
+    <rect x="170" y="290" width="94" height="94" rx="18"/>
+    <rect x="280" y="290" width="94" height="94" rx="18"/>
+    <rect x="390" y="290" width="94" height="94" rx="18"/>
+  </g>
+
+  <ellipse cx="600" cy="190" rx="200" ry="180" fill="url(#pod-lamp)"/>
+  <line x1="600" y1="0" x2="600" y2="106" stroke="#8a6b86" stroke-width="4"/>
+  <path d="M562 106h76l-16 42h-44z" fill="#fbbf24"/>
+  <path d="M562 106h76l-8 18h-60z" fill="#fcd34d"/>
+  <ellipse cx="600" cy="154" rx="44" ry="10" fill="#fde68a" opacity="0.35"/>
+
+  <rect x="0" y="440" width="800" height="160" fill="url(#pod-floor)"/>
+  <line x1="0" y1="440" x2="800" y2="440" stroke="#5d3a59" stroke-width="3"/>
+  <ellipse cx="540" cy="512" rx="220" ry="52" fill="#3b203a" opacity="0.85"/>
+
+  <g>
+    <rect x="500" y="418" width="184" height="20" rx="10" fill="#6b4a66"/>
+    <rect x="520" y="438" width="12" height="90" rx="6" fill="#4d3049"/>
+    <rect x="652" y="438" width="12" height="90" rx="6" fill="#4d3049"/>
+    <rect x="546" y="372" width="92" height="46" rx="10" fill="#1f1321" stroke="#5d3a59" stroke-width="2"/>
+    <circle cx="592" cy="395" r="12" fill="#a3e635" opacity="0.85"/>
+    <rect x="562" y="424" width="60" height="8" rx="4" fill="#3a2238"/>
+  </g>
+
+  <g>
+    <rect x="312" y="232" width="54" height="112" rx="27" fill="url(#pod-mic)"/>
+    <rect x="320" y="246" width="38" height="76" rx="19" fill="#57534e" opacity="0.55"/>
+    <line x1="316" y1="258" x2="362" y2="258" stroke="#e7e5e4" stroke-width="2" opacity="0.6"/>
+    <line x1="314" y1="270" x2="364" y2="270" stroke="#e7e5e4" stroke-width="2" opacity="0.6"/>
+    <line x1="312" y1="282" x2="366" y2="282" stroke="#e7e5e4" stroke-width="2" opacity="0.6"/>
+    <line x1="310" y1="294" x2="368" y2="294" stroke="#e7e5e4" stroke-width="2" opacity="0.6"/>
+    <rect x="334" y="344" width="10" height="34" fill="#78716c"/>
+    <path d="M300 384c0 22 34 34 78 28" fill="none" stroke="#a8a29e" stroke-width="7" stroke-linecap="round"/>
+    <line x1="330" y1="378" x2="292" y2="502" stroke="#a8a29e" stroke-width="8" stroke-linecap="round"/>
+    <line x1="292" y1="502" x2="256" y2="548" stroke="#a8a29e" stroke-width="8" stroke-linecap="round"/>
+    <line x1="292" y1="502" x2="340" y2="544" stroke="#a8a29e" stroke-width="8" stroke-linecap="round"/>
+  </g>
+
+  <g fill="#5d3a59" opacity="0.9">
+    <rect x="690" y="330" width="54" height="110" rx="14"/>
+    <rect x="704" y="316" width="26" height="18" rx="8"/>
+    <path d="M680 296c0-18 14-32 32-32s32 14 32 32" fill="none" stroke="#5d3a59" stroke-width="6"/>
+  </g>
+
+  <circle cx="600" cy="392" r="5" fill="#fbbf24"/>
+  <circle cx="616" cy="392" r="5" fill="#a3e635"/>
+</svg>

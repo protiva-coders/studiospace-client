@@ -15,6 +15,8 @@ const categories = [
 { name: "Art Workshops", value: "art-workshops" },
 ];
 
+const currentYear = new Date().getFullYear();
+
 export default function Footer() {
 return ( <footer className="bg-gray-950 text-gray-300"> <div className="mx-auto max-w-7xl px-5 py-16"> <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-5"> <div className="lg:col-span-2"> <Link
            href="/"
@@ -22,7 +24,6 @@ return ( <footer className="bg-gray-950 text-gray-300"> <div className="mx-auto 
          >
 Studio<span className="text-lime-400">Space.</span> </Link>
 
-```
         <p className="mt-5 max-w-sm text-sm leading-7 text-gray-400">
           Your creative journey starts here. Discover and book inspiring
           creative spaces for photography, filmmaking, music, podcasting
@@ -154,7 +155,7 @@ Studio<span className="text-lime-400">Space.</span> </Link>
 
     <div className="mt-14 flex flex-col items-center justify-between gap-5 border-t border-gray-800 pt-8 text-center sm:flex-row">
       <p className="text-sm text-gray-500">
-        © {new Date().getFullYear()} StudioSpace. All rights reserved.
+        © {currentYear} StudioSpace. All rights reserved.
       </p>
 
       <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-400">

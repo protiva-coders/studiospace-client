@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Minimal white photography studio with an infinity cove, a black cube sculpture and a plant">
+  <defs>
+    <linearGradient id="white-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fbfbf9"/>
+      <stop offset="1" stop-color="#dededb"/>
+    </linearGradient>
+    <linearGradient id="white-cove" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.7" stop-color="#f4f4f2"/>
+      <stop offset="1" stop-color="#e4e4e1"/>
+    </linearGradient>
+    <radialGradient id="white-light" cx="0.4" cy="0.2" r="0.7">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="white-shadow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#78716c" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#78716c" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="800" height="600" fill="url(#white-bg)"/>
+  <rect width="800" height="600" fill="url(#white-light)"/>
+
+  <path d="M0 420V120c0-34 28-62 62-62h556c34 0 62 28 62 62v300c0 44-36 80-80 80H80c-44 0-80-36-80-80Z" fill="url(#white-cove)"/>
+
+  <path d="M0 420h800" stroke="#d6d3d1" stroke-width="2" opacity="0.6"/>
+  <path d="M0 420c0 44 36 80 80 80h640c44 0 80-36 80-80" fill="none" stroke="#e7e5e4" stroke-width="4" opacity="0.8"/>
+
+  <ellipse cx="420" cy="500" rx="300" ry="60" fill="url(#white-shadow)"/>
+
+  <g>
+    <rect x="470" y="270" width="150" height="150" rx="4" fill="#1c1917"/>
+    <path d="M470 270h150v32H470z" fill="#292524"/>
+    <path d="M470 420h150l24 22H446z" fill="#292524"/>
+    <ellipse cx="548" cy="446" rx="110" ry="20" fill="#78716c" opacity="0.25"/>
+  </g>
+
+  <g>
+    <rect x="350" y="336" width="58" height="58" rx="4" fill="#44403c"/>
+    <path d="M350 336h58v14h-58z" fill="#57534e"/>
+    <ellipse cx="379" cy="398" rx="46" ry="10" fill="#78716c" opacity="0.22"/>
+  </g>
+
+  <g>
+    <path d="M172 424c-40-16-60-56-50-96 32 8 58 46 50 96Z" fill="#5c6b45"/>
+    <path d="M180 424c6-50 36-78 72-84 0 44-30 78-72 84Z" fill="#738451"/>
+    <path d="M174 424c-30-6-52-28-58-58 30-2 54 22 58 58Z" fill="#4a5838"/>
+    <path d="M156 424h44l-8 64h-28z" fill="#292524"/>
+    <ellipse cx="178" cy="492" rx="42" ry="9" fill="#78716c" opacity="0.2"/>
+  </g>
+
+  <g stroke="#a8a29e" stroke-width="3" fill="none" opacity="0.7">
+    <line x1="60" y1="60" x2="60" y2="200"/>
+    <line x1="40" y1="60" x2="80" y2="60"/>
+    <line x1="740" y1="60" x2="740" y2="200"/>
+    <line x1="720" y1="60" x2="760" y2="60"/>
+  </g>
+
+  <circle cx="700" cy="330" r="5" fill="#a3e635"/>
+  <circle cx="100" cy="320" r="4" fill="#a8a29e" opacity="0.6"/>
+</svg>

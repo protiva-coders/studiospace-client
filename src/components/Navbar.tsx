@@ -152,7 +152,8 @@ return ( <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/
         aria-label="Toggle theme"
         className="rounded-full p-2.5 text-gray-700 transition hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
       >
-        {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+        <Sun size={20} className="hidden dark:block" />
+        <Moon size={20} className="block dark:hidden" />
       </button>
 
       {user ? (
@@ -242,7 +243,8 @@ return ( <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/
         aria-label="Toggle theme"
         className="rounded-full p-2 text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
       >
-        {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+        <Sun size={20} className="hidden dark:block" />
+        <Moon size={20} className="block dark:hidden" />
       </button>
 
       <button

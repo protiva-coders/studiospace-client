@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Sunlit photography loft with large windows, a camera on a tripod and a plant">
+  <defs>
+    <linearGradient id="loft-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8f0e4"/>
+      <stop offset="1" stop-color="#ddc6a8"/>
+    </linearGradient>
+    <linearGradient id="loft-glass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fffdf6"/>
+      <stop offset="1" stop-color="#f4e4c8"/>
+    </linearGradient>
+    <linearGradient id="loft-floor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#d9c09f"/>
+      <stop offset="1" stop-color="#bfa07a"/>
+    </linearGradient>
+    <radialGradient id="loft-sun" cx="0.24" cy="0.14" r="0.65">
+      <stop offset="0" stop-color="#fff8d9" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#fff8d9" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="800" height="600" fill="url(#loft-bg)"/>
+  <rect width="800" height="600" fill="url(#loft-sun)"/>
+  <rect x="0" y="0" width="800" height="430" fill="#efe0cb" opacity="0.45"/>
+
+  <rect x="68" y="58" width="384" height="354" rx="8" fill="#b99874" opacity="0.35"/>
+  <rect x="82" y="72" width="356" height="326" fill="url(#loft-glass)"/>
+  <rect x="82" y="72" width="356" height="326" fill="none" stroke="#b99874" stroke-width="6"/>
+  <line x1="260" y1="72" x2="260" y2="398" stroke="#b99874" stroke-width="6"/>
+  <line x1="82" y1="236" x2="438" y2="236" stroke="#b99874" stroke-width="6"/>
+
+  <polygon points="118,88 366,88 648,600 232,600" fill="#fff7e2" opacity="0.3"/>
+  <polygon points="300,88 404,88 784,600 570,600" fill="#fff7e2" opacity="0.18"/>
+
+  <rect x="0" y="430" width="800" height="170" fill="url(#loft-floor)"/>
+  <line x1="0" y1="430" x2="800" y2="430" stroke="#b99874" stroke-width="3" opacity="0.55"/>
+  <ellipse cx="560" cy="522" rx="218" ry="60" fill="#cbb08b" opacity="0.6"/>
+
+  <rect x="520" y="400" width="92" height="14" rx="7" fill="#8a6a4c"/>
+  <line x1="532" y1="414" x2="526" y2="472" stroke="#8a6a4c" stroke-width="8" stroke-linecap="round"/>
+  <line x1="600" y1="414" x2="606" y2="472" stroke="#8a6a4c" stroke-width="8" stroke-linecap="round"/>
+
+  <g>
+    <rect x="620" y="328" width="72" height="44" rx="9" fill="#3f342c"/>
+    <circle cx="656" cy="350" r="17" fill="#6b5a4c"/>
+    <circle cx="656" cy="350" r="9" fill="#2b241f"/>
+    <rect x="628" y="316" width="24" height="14" rx="4" fill="#3f342c"/>
+    <line x1="642" y1="372" x2="616" y2="472" stroke="#3f342c" stroke-width="6" stroke-linecap="round"/>
+    <line x1="670" y1="372" x2="696" y2="472" stroke="#3f342c" stroke-width="6" stroke-linecap="round"/>
+    <line x1="656" y1="372" x2="656" y2="454" stroke="#3f342c" stroke-width="6" stroke-linecap="round"/>
+  </g>
+
+  <g>
+    <path d="M718 472c-31-10-47-41-41-72 25 7 45 35 41 72Z" fill="#5c6b45"/>
+    <path d="M724 472c4-37 27-59 54-63 0 33-23 59-54 63Z" fill="#738451"/>
+    <path d="M720 472c-23-4-39-21-45-43 23-2 41 17 45 43Z" fill="#4a5838"/>
+    <path d="M704 472h36l-6 62h-24z" fill="#a97c53"/>
+  </g>
+
+  <circle cx="470" cy="452" r="4" fill="#fff7e2" opacity="0.75"/>
+  <circle cx="492" cy="470" r="3" fill="#fff7e2" opacity="0.6"/>
+</svg>
