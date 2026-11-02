@@ -1,7 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Search,
   MapPin,
@@ -25,74 +26,20 @@ const categories = [
   "Art Workshops",
 ];
 
-const studios = [
-  {
-    id: "1",
-    title: "Luxury Photography Studio",
-    category: "Photo Studios",
-    location: "Gulshan, Dhaka",
-    price: 1500,
-    capacity: 8,
-    image:
-      "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=900",
-    rating: 4.9,
-  },
-  {
-    id: "2",
-    title: "Professional Podcast Room",
-    category: "Podcast Rooms",
-    location: "Banani, Dhaka",
-    price: 1200,
-    capacity: 4,
-    image:
-      "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=900",
-    rating: 4.8,
-  },
-  {
-    id: "3",
-    title: "Creative Music Production Suite",
-    category: "Music Suites",
-    location: "Dhanmondi, Dhaka",
-    price: 2000,
-    capacity: 6,
-    image:
-      "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=900",
-    rating: 4.9,
-  },
-  {
-    id: "4",
-    title: "Modern Photography Space",
-    category: "Photo Studios",
-    location: "Uttara, Dhaka",
-    price: 1800,
-    capacity: 10,
-    image:
-      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=900",
-    rating: 4.7,
-  },
-  {
-    id: "5",
-    title: "Professional Film Production Stage",
-    category: "Sound Stages",
-    location: "Mirpur, Dhaka",
-    price: 2500,
-    capacity: 15,
-    image:
-      "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=900",
-    rating: 4.8,
-  },
-  {
-    id: "6",
-    title: "Artist Creative Workshop",
-    category: "Art Workshops",
-    location: "Mohammadpur, Dhaka",
-    price: 1000,
-    capacity: 12,
-    image:
-      "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=900",
-    rating: 4.6,
-  },
-];
+type Studio = {
+  _id: string;
+  title: string;
+  category: string;
+  location?: string;
+  address?: string;
+  hourlyRate?: number;
+  price?: number;
+  maxCapacity?: number;
+  capacity?: number;
+  imageUrl?: string;
+  image?: string;
+  rating?: number;
+};
 
 const categoryIcons = [
   { name: "Photo Studios", icon: Camera },
@@ -102,26 +49,64 @@ const categoryIcons = [
   { name: "Art Workshops", icon: Palette },
 ];
 
+function normalizeCategory(category: string) {
+  const categoryMap: Record<string, string> = {
+    "Photo Studios": "Photo Studio",
+    "Sound Stages": "Sound Stage",
+    "Podcast Rooms": "Podcast Room",
+    "Music Suites": "Music Suite",
+    "Art Workshops": "Art Workshop",
+  };
+
+  return categoryMap[category] ?? category;
+}
+
 export default function StudiosPage() {
+  const [studios, setStudios] = useState<Studio[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All Studios");
-  const [maxPrice, setMaxPrice] = useState(5000);
+  const [maxPrice, setMaxPrice] = useState(0);
+
+  useEffect(() => {
+    fetch("http://localhost:8000/api/studios")
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Failed to fetch studios");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setStudios(data);
+      })
+      .catch(() => {
+        setError("Studios load করা যায়নি। আবার চেষ্টা করো।");
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
 
   const filteredStudios = useMemo(() => {
     return studios.filter((studio) => {
+      const price = studio.hourlyRate ?? studio.price ?? 0;
+      const location = studio.location ?? studio.address ?? "";
+
       const matchesSearch =
         studio.title.toLowerCase().includes(search.toLowerCase()) ||
-        studio.location.toLowerCase().includes(search.toLowerCase());
+        location.toLowerCase().includes(search.toLowerCase());
 
       const matchesCategory =
         selectedCategory === "All Studios" ||
-        studio.category === selectedCategory;
+        studio.category === normalizeCategory(selectedCategory);
 
-      const matchesPrice = studio.price <= maxPrice;
+      const matchesPrice = maxPrice === 0 || price <= maxPrice;
 
       return matchesSearch && matchesCategory && matchesPrice;
     });
-  }, [search, selectedCategory, maxPrice]);
+  }, [studios, search, selectedCategory, maxPrice]);
 
   return (
     <main className="min-h-screen bg-background">
@@ -138,9 +123,8 @@ export default function StudiosPage() {
             </h1>
 
             <p className="mt-6 max-w-2xl text-base leading-7 text-zinc-400 md:text-lg">
-              Explore unique creative spaces, professional studios and
-              inspiring environments. Book the perfect space for your
-              creativity.
+              Explore unique creative spaces, professional studios and inspiring
+              environments. Book the perfect space for your creativity.
             </p>
           </div>
 
@@ -168,7 +152,10 @@ export default function StudiosPage() {
             </div>
 
             <button
-              onClick={() => setSelectedCategory("All Studios")}
+              onClick={() => {
+                setSelectedCategory("All Studios");
+                setMaxPrice(0);
+              }}
               className="rounded-xl bg-lime-400 px-8 py-3 font-semibold text-zinc-950 transition hover:bg-lime-300"
             >
               Explore Studios
@@ -182,6 +169,7 @@ export default function StudiosPage() {
           <h2 className="text-2xl font-bold tracking-tight md:text-3xl">
             Explore by category
           </h2>
+
           <p className="mt-2 text-sm text-muted-foreground">
             Find a space that matches your creative needs.
           </p>
@@ -240,11 +228,14 @@ export default function StudiosPage() {
               onChange={(e) => setMaxPrice(Number(e.target.value))}
               className="rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none"
             >
-              <option value={5000}>All Prices</option>
+              <option value={0}>All Prices</option>
               <option value={1000}>Up to ৳1,000</option>
               <option value={1500}>Up to ৳1,500</option>
               <option value={2000}>Up to ৳2,000</option>
               <option value={3000}>Up to ৳3,000</option>
+              <option value={5000}>Up to ৳5,000</option>
+              <option value={10000}>Up to ৳10,000</option>
+              <option value={20000}>Up to ৳20,000</option>
             </select>
           </div>
         </div>
@@ -265,67 +256,88 @@ export default function StudiosPage() {
           ))}
         </div>
 
-        {filteredStudios.length > 0 ? (
+        {loading ? (
+          <div className="py-20 text-center text-muted-foreground">
+            Loading studios...
+          </div>
+        ) : error ? (
+          <div className="py-20 text-center text-red-500">{error}</div>
+        ) : filteredStudios.length > 0 ? (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {filteredStudios.map((studio) => (
-              <div
-                key={studio.id}
-                className="group overflow-hidden rounded-2xl border border-border bg-card transition duration-300 hover:-translate-y-1 hover:shadow-xl"
-              >
-                <div className="relative h-56 overflow-hidden">
-                  <img
-                    src={studio.image}
-                    alt={studio.title}
-                    className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                  />
+            {filteredStudios.map((studio) => {
+              const price = studio.hourlyRate ?? studio.price ?? 0;
+              const capacity = studio.maxCapacity ?? studio.capacity ?? 0;
+              const location =
+                studio.location ?? studio.address ?? "Location not provided";
+              const image =
+                studio.imageUrl ??
+                studio.image ??
+                "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=900";
 
-                  <span className="absolute left-4 top-4 rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-zinc-900">
-                    {studio.category}
-                  </span>
+              return (
+                <div
+                  key={studio._id}
+                  className="group overflow-hidden rounded-2xl border border-border bg-card transition duration-300 hover:-translate-y-1 hover:shadow-xl"
+                >
+                  <div className="relative h-56 overflow-hidden">
+                    <Image
+                      src={image}
+                      alt={studio.title}
+                      width={900}
+                      height={600}
+                      className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                    />
 
-                  <span className="absolute right-4 top-4 rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-zinc-900">
-                    ★ {studio.rating}
-                  </span>
-                </div>
+                    <span className="absolute left-4 top-4 rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-zinc-900">
+                      {studio.category}
+                    </span>
 
-                <div className="p-5">
-                  <h3 className="text-lg font-bold">{studio.title}</h3>
-
-                  <div className="mt-3 flex items-center gap-2 text-sm text-muted-foreground">
-                    <MapPin size={16} />
-                    {studio.location}
+                    {studio.rating && (
+                      <span className="absolute right-4 top-4 rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-zinc-900">
+                        ★ {studio.rating}
+                      </span>
+                    )}
                   </div>
 
-                  <div className="mt-3 flex items-center gap-2 text-sm text-muted-foreground">
-                    <Users size={16} />
-                    Up to {studio.capacity} people
-                  </div>
+                  <div className="p-5">
+                    <h3 className="text-lg font-bold">{studio.title}</h3>
 
-                  <div className="mt-5 flex items-center justify-between border-t border-border pt-5">
-                    <div>
-                      <p className="text-xs text-muted-foreground">
-                        Starting from
-                      </p>
-
-                      <p className="mt-1 text-lg font-bold">
-                        ৳{studio.price.toLocaleString("en-IN")}
-                        <span className="text-xs font-normal text-muted-foreground">
-                          /hour
-                        </span>
-                      </p>
+                    <div className="mt-3 flex items-center gap-2 text-sm text-muted-foreground">
+                      <MapPin size={16} />
+                      {location}
                     </div>
 
-                    <Link
-                      href={`/studios/${studio.id}`}
-                      className="flex items-center gap-2 rounded-xl bg-zinc-950 px-4 py-3 text-sm font-semibold text-white transition hover:bg-lime-400 hover:text-zinc-950"
-                    >
-                      Details
-                      <ArrowUpRight size={16} />
-                    </Link>
+                    <div className="mt-3 flex items-center gap-2 text-sm text-muted-foreground">
+                      <Users size={16} />
+                      Up to {capacity} people
+                    </div>
+
+                    <div className="mt-5 flex items-center justify-between border-t border-border pt-5">
+                      <div>
+                        <p className="text-xs text-muted-foreground">
+                          Starting from
+                        </p>
+
+                        <p className="mt-1 text-lg font-bold">
+                          ৳{price.toLocaleString("en-IN")}
+                          <span className="text-xs font-normal text-muted-foreground">
+                            /hour
+                          </span>
+                        </p>
+                      </div>
+
+                      <Link
+                        href={`/studios/${studio._id}`}
+                        className="flex items-center gap-2 rounded-xl bg-zinc-950 px-4 py-3 text-sm font-semibold text-white transition hover:bg-lime-400 hover:text-zinc-950"
+                      >
+                        Details
+                        <ArrowUpRight size={16} />
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         ) : (
           <div className="rounded-2xl border border-dashed border-border py-20 text-center">
@@ -341,7 +353,7 @@ export default function StudiosPage() {
               onClick={() => {
                 setSearch("");
                 setSelectedCategory("All Studios");
-                setMaxPrice(5000);
+                setMaxPrice(0);
               }}
               className="mt-5 rounded-xl bg-lime-400 px-5 py-3 text-sm font-semibold text-zinc-950"
             >
